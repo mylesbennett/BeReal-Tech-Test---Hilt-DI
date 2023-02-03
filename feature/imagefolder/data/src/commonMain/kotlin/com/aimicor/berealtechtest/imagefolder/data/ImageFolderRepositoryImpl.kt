@@ -5,6 +5,8 @@ import com.aimicor.berealtechtest.imagefolder.domain.ImageFolderRepository
 import com.aimicor.httpnetwork.data.safeCall
 import com.aimicor.httpnetwork.domain.HttpResult
 
+internal val imageFolderRepository: ImageFolderRepository = ImageFolderRepositoryImpl()
+
 internal class ImageFolderRepositoryImpl(
     private val service: ImageFolderService = ImageFolderService()
 ) : ImageFolderRepository {

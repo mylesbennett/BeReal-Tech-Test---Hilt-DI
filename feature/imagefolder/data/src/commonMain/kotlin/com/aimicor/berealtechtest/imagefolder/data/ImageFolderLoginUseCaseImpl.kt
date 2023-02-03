@@ -6,7 +6,7 @@ import com.aimicor.berealtechtest.imagefolder.domain.ImageFolderRepository
 import com.aimicor.httpnetwork.domain.HttpResult
 
 class ImageFolderLoginUseCaseImpl(
-    private val repository: ImageFolderRepository = ImageFolderRepositoryImpl()
+    private val repository: ImageFolderRepository = imageFolderRepository
 ): ImageFolderLoginUseCase {
 
     override suspend fun invoke(

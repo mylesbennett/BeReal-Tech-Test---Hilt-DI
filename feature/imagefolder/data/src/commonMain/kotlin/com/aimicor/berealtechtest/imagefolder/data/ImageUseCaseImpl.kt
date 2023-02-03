@@ -5,7 +5,7 @@ import com.aimicor.berealtechtest.imagefolder.domain.ImageUseCase
 import com.aimicor.httpnetwork.domain.HttpResult
 
 class ImageUseCaseImpl(
-    private val repository: ImageFolderRepository = ImageFolderRepositoryImpl()
+    private val repository: ImageFolderRepository = imageFolderRepository
 ):ImageUseCase {
 
     override suspend fun invoke(id: String): HttpResult<ByteArray> = repository.getImage(id)
