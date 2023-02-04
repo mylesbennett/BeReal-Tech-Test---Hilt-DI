@@ -12,3 +12,4 @@
 - Experimental Compose transition animations
 - UDF MVI presentation architecture
 - Hilt dependency injection (for manual DI alternative, see https://github.com/mylesbennett/BeReal-Tech-Test---Manual-DI)
+- TDD unit-tests featuring MockK and Turbine
