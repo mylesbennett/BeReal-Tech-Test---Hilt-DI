@@ -7,6 +7,7 @@
 - Feature modules and thin app
 - Feature-localised clean-code architecture enforced by build file dependency
 - KMM domain and data modules further enforcing clean code architecture
+- Coroutine multi-threading
 - Jetpack Compose UI and navigation (one Activity in the app and no Fragments)
 - Experimental Compose transition animations
 - UDF MVI presentation architecture
