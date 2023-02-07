@@ -30,7 +30,7 @@ abstract class UdfViewModel<EV : Event, ST : UiState, EF : SideEffect> : ViewMod
     protected abstract fun startingUiState(): ST
 
     protected fun setUiState(reduce: ST.() -> ST) {
-        _uiState.value = uiState.value.reduce()
+        _uiState.value = _uiState.value.reduce()
     }
 
     protected fun sendSideEffect(builder: () -> EF) {
