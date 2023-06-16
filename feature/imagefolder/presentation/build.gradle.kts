@@ -63,6 +63,7 @@ dependencies {
 
     implementation(Dagger.HiltAndroid)
     implementation(Dagger.HiltComposeNav)
+    debugImplementation(Compose.ToolingPreview)
     kapt(Dagger.HiltAndroidCompiler)
     kapt(Dagger.HiltCompiler)
 

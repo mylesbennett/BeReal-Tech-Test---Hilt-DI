@@ -14,7 +14,9 @@ import kotlinx.coroutines.launch
 @HiltViewModel
 internal class LoginViewModel @Inject constructor(
     private val loginUseCase: ImageFolderLoginUseCase
-) : UdfViewModel<LoginEvent, LoginUiState, NavSideEffect>() {
+) : UdfViewModel<LoginEvent, LoginUiState, NavSideEffect>(
+    initialUiState = LoginUiState(FetchStatus.LOADING)
+) {
 
     override fun handleEvent(event: LoginEvent) {
         (event as? LoginEvent.Login)?.apply {
@@ -23,8 +25,6 @@ internal class LoginViewModel @Inject constructor(
             }
         }
     }
-
-    override fun startingUiState() = LoginUiState(FetchStatus.LOADING)
 
     private fun HttpResult<ImageFolderDetails>.process() {
         when (this) {

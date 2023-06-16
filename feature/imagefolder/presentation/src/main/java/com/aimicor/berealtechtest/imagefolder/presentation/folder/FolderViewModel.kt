@@ -10,8 +10,8 @@ import com.aimicor.composenav.presentation.getParam
 import com.aimicor.httpnetwork.domain.HttpResult
 import com.aimicor.udfmvi.presentation.UdfViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 internal const val FOLDER_ID = "FolderId"
 internal const val IS_SUBFOLDER = "IsSubFolder"
@@ -20,7 +20,13 @@ internal const val IS_SUBFOLDER = "IsSubFolder"
 internal class FolderViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
     private val folderUseCase: ImageFolderUseCase
-) : UdfViewModel<FolderEvents, FolderUiState, NavSideEffect>() {
+) : UdfViewModel<FolderEvents, FolderUiState, NavSideEffect>(
+    initialUiState = FolderUiState(
+        fetchStatus = FetchStatus.LOADING,
+        isSubfolder = true,
+        folderItems = emptyList()
+    )
+) {
 
     init {
         savedStateHandle.getParam<String>(FOLDER_ID)?.let { id ->
@@ -34,12 +40,6 @@ internal class FolderViewModel @Inject constructor(
             is FolderEvents.OnItemClicked -> event.navigateToView()
         }
     }
-
-    override fun startingUiState() = FolderUiState(
-        fetchStatus = FetchStatus.LOADING,
-        isSubfolder = true,
-        folderItems = emptyList()
-    )
 
     private fun HttpResult<List<ImageFolderDetails>>.process() {
         when (this) {

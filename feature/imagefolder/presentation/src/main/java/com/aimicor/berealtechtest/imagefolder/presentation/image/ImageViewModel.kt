@@ -8,8 +8,8 @@ import com.aimicor.composenav.presentation.getParam
 import com.aimicor.httpnetwork.domain.HttpResult
 import com.aimicor.udfmvi.presentation.UdfViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import javax.inject.Inject
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 internal const val IMAGE_ID = "FolderId"
 
@@ -17,7 +17,12 @@ internal const val IMAGE_ID = "FolderId"
 internal class ImageViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle,
     private val imageUseCase: ImageUseCase
-) : UdfViewModel<ImageEvent, ImageUiState, ImageSideEffect>() {
+) : UdfViewModel<ImageEvent, ImageUiState, ImageSideEffect>(
+    initialUiState = ImageUiState(
+        fetchStatus = FetchStatus.LOADING,
+        imageData = ByteArray(0)
+    )
+) {
 
     init {
         savedStateHandle.getParam<String>(IMAGE_ID)?.let { id ->
@@ -31,13 +36,8 @@ internal class ImageViewModel @Inject constructor(
         }
     }
 
-    override fun startingUiState() = ImageUiState(
-        fetchStatus = FetchStatus.LOADING,
-        imageData = ByteArray(0)
-    )
-
-    private fun HttpResult<ByteArray>.process() {
-        when(this){
+    fun HttpResult<ByteArray>.process() {
+        when (this) {
             is HttpResult.Failure -> setUiState {
                 copy(
                     fetchStatus = FetchStatus.FAIL
