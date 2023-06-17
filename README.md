@@ -1,5 +1,8 @@
 # BeReal Tech test
 (Open with Android Studio Electric Eel)
+See *BeReal_test_technique.zip* for original spec.
+
+NOTE:- The app currently doesn't run. This is because the user "Noel" no longer has an image folder associated with it on the cloud so, whilst the app successfully logs in, it fails to fetch any data. The error is handled gracefully, however.
 
 ### Incorporates:
 
@@ -13,3 +16,7 @@
 - UDF MVI presentation architecture
 - Hilt dependency injection (for manual DI alternative, see https://github.com/mylesbennett/BeReal-Tech-Test---Manual-DI)
 - TDD unit-tests featuring MockK and Turbine
+
+### TODO:
+
+- Separate Use Case implementations from Data Layer. This was an architectural short-cut taken to expedite delivery and to hide the Repository interface from the Presentation Layer (It didn't need access to it).
